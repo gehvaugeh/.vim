@@ -16,6 +16,7 @@ set showmatch
 
 set number
 
+nnoremap <F6> :edit ./ <CR>
 nnoremap <F7> :bprev <CR>
 nnoremap <F8> :bnext <CR>
 nnoremap <F9> :buffers <CR>:buffer <SPACE>
