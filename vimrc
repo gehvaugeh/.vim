@@ -44,3 +44,8 @@ command Fw :w ! sudo tee /dev/null/ % <CR>
 " Some configurations for the netrw file exlorer
 let g:netrw_liststyle=3
 let g:netrw_banner=0
+
+" Change behavior of autocomplete
+" to just insert longest common text
+" and open if only one entry is give
+set completeopt=longest,menuone
