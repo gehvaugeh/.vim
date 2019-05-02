@@ -39,7 +39,7 @@ nnoremap <F9> :buffers <CR>:buffer <SPACE>
 nnoremap <F10> :bdel <CR>
 
 " Custom commands
-cmap w!! :w ! sudo tee /dev/null/ %
+command Fw :w ! sudo tee /dev/null/ % <CR>
 
 " Some configurations for the netrw file exlorer
 let g:netrw_liststyle=3
