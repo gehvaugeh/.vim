@@ -11,6 +11,7 @@ set history=100
 " Indentations, 2 Spaces no Tab
 filetype indent on
 set nowrap
+
 "set wrap
 set tabstop=2
 set shiftwidth=2
@@ -19,6 +20,13 @@ set expandtab
 " Highlight searchresults and show matches
 set hlsearch
 set showmatch
+
+" Intellgent case recognition on search
+set ignorecase
+set smartcase
+
+" Inkremental search during typing
+set incsearch
 
 " Linenumbers
 set number
@@ -31,4 +39,13 @@ nnoremap <F9> :buffers <CR>:buffer <SPACE>
 nnoremap <F10> :bdel <CR>
 
 " Custom commands
-comman Fw :w ! sudo tee %
+command Fw :w ! sudo tee /dev/null/ % <CR>
+
+" Some configurations for the netrw file exlorer
+let g:netrw_liststyle=3
+let g:netrw_banner=0
+
+" Change behavior of autocomplete
+" to just insert longest common text
+" and open if only one entry is give
+set completeopt=longest,menuone
