@@ -10,6 +10,8 @@ set history=100
 
 " Indentations, 2 Spaces no Tab
 filetype indent on
+
+" No line wrapping
 set nowrap
 
 "set wrap
