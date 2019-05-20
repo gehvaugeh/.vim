@@ -49,3 +49,52 @@ let g:netrw_banner=0
 " to just insert longest common text
 " and open if only one entry is give
 set completeopt=longest,menuone
+
+" My Custom Statusline, first change Color
+hi StatusLine cterm=standout ctermbg=0 ctermfg=11
+
+set noshowmode    " Disable the bar that shows the mode
+set noruler       " Disable ruler
+set laststatus=2  " Always show Statusline
+
+
+" Create new buffer local option for mode
+let w:insertmode = 0
+
+" Statusline function
+function! s:createStatusLine()
+  " Clear Statusline
+  set statusline=
+
+  " Color Filename depending on Mode
+  if w:insertmode
+    set statusline+=\ %#DiffChange#
+  else
+    set statusline+=\ %#DiffText#
+  endif
+
+  " File Information
+  set statusline+=%f                                          " relative path & filename
+  set statusline+=%#StatusLine#                               " Normal color
+  set statusline+=\ [
+  set statusline+=%Y                                          " filetype
+  set statusline+=\ %{&fileencoding?&fileencoding:&encoding}  " file ecoding
+  set statusline+=]
+
+  set statusline+=%=                                          " Change to right Site
+  
+  " Line information
+  set statusline+=%#LineNr#                                   " Linenumber color
+  set statusline+=\ %l/%L                                     " current Line / total amount of Lines in Buffer
+endfunction
+
+" Autocommand group for Modechange
+augroup statusline
+  " Remove all autocommands in this group
+  au! 
+  au InsertEnter * let w:insertmode = 1 | call s:createStatusLine()
+  au InsertLeave * let w:insertmode = 0 | call s:createStatusLine()
+  au WinEnter,BufWinEnter * call s:createStatusLine()
+augroup END
+
+call s:createStatusLine()
