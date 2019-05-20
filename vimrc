@@ -61,7 +61,7 @@ set laststatus=2  " Always show Statusline
 
 
 " Create new buffer local option for mode
-let w:insertmode = 0
+let g:insertmode = 0
 
 " Statusline function
 function! s:createStatusLine()
@@ -69,7 +69,7 @@ function! s:createStatusLine()
   set statusline=
 
   " Color Filename depending on Mode
-  if w:insertmode
+  if g:insertmode
     set statusline+=\ %#DiffChange#
   else
     set statusline+=\ %#DiffText#
@@ -87,6 +87,7 @@ function! s:createStatusLine()
   
   " Line information
   set statusline+=%#LineNr#                                   " Linenumber color
+  set statusline+=%p%%
   set statusline+=\ %l/%L                                     " current Line / total amount of Lines in Buffer
 endfunction
 
@@ -94,8 +95,8 @@ endfunction
 augroup statusline
   " Remove all autocommands in this group
   au! 
-  au InsertEnter * let w:insertmode = 1 | call s:createStatusLine()
-  au InsertLeave * let w:insertmode = 0 | call s:createStatusLine()
+  au InsertEnter * let g:insertmode = 1 | call s:createStatusLine()
+  au InsertLeave * let g:insertmode = 0 | call s:createStatusLine()
   au WinEnter,BufWinEnter * call s:createStatusLine()
 augroup END
 
