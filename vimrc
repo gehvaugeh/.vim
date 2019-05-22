@@ -82,13 +82,18 @@ function! s:createStatusLine()
   set statusline+=%Y                                          " filetype
   set statusline+=\ %{&fileencoding?&fileencoding:&encoding}  " file ecoding
   set statusline+=]
+  set statusline+=%m
 
   set statusline+=%=                                          " Change to right Site
   
   " Line information
-  set statusline+=%#LineNr#                                   " Linenumber color
-  set statusline+=%p%%
-  set statusline+=\ %l/%L                                     " current Line / total amount of Lines in Buffer
+  if g:insertmode
+    set statusline+=\ %#DiffChange#
+  else
+    set statusline+=\ %#DiffText#
+  endif
+  set statusline+=%3p%%
+  set statusline+=\ %3l:%-3L                                     " current Line / total amount of Lines in Buffer
 endfunction
 
 " Autocommand group for Modechange
