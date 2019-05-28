@@ -34,11 +34,14 @@ set incsearch
 set number
 
 " Custom Hotkeys
-nnoremap <F6> :edit ./ <CR>
 nnoremap <F7> :bprev <CR>
 nnoremap <F8> :bnext <CR>
 nnoremap <F9> :buffers <CR>:buffer <SPACE>
 nnoremap <F10> :bdel <CR>
+
+nnoremap <F6> :tabnew ./ <CR>
+nnoremap <Tab> :tabn <CR>
+nnoremap <S-Tab> :tabp <CR>
 
 " Custom commands
 command Fw :w ! sudo tee > /dev/null % <CR>
@@ -106,3 +109,8 @@ augroup statusline
 augroup END
 
 call s:createStatusLine()
+
+" Custom Tabline Colors
+hi! link TabLineFill StatusLine
+hi! link TabLineSel DiffText
+hi! link TabLine conceal
