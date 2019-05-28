@@ -34,11 +34,7 @@ set incsearch
 set number
 
 " Custom Hotkeys
-nnoremap <F7> :bprev <CR>
-nnoremap <F8> :bnext <CR>
-nnoremap <F9> :buffers <CR>:buffer <SPACE>
-nnoremap <F10> :bdel <CR>
-
+nnoremap <F5> :q <CR>
 nnoremap <F6> :tabnew ./ <CR>
 nnoremap <Tab> :tabn <CR>
 nnoremap <S-Tab> :tabp <CR>
