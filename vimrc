@@ -34,9 +34,15 @@ set incsearch
 set number
 
 " Custom Hotkeys
-nnoremap <F5> :windo bd <CR>
-nnoremap <F6> :tabnew ./ <CR>
-nnoremap <F7> :edit ./ <CR>
+"  New Empty buffer in new Tab
+nnoremap <C-n> :tabedit <CR>
+"  Open File from current dir in new Tab
+nnoremap <C-o> :tabedit ./ <CR>
+"  Delete Buffer in current window (and so close window)
+noremap <F4>w :bd <CR>
+"  Delete all Buffers in all windows in current tab (and close tab)
+nnoremap <F4>t :windo bd <CR>
+"  Tab / Shift Tab for tab navigation
 nnoremap <Tab> :tabn <CR>
 nnoremap <S-Tab> :tabp <CR>
 
