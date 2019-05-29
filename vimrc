@@ -34,8 +34,9 @@ set incsearch
 set number
 
 " Custom Hotkeys
-nnoremap <F5> :q <CR>
+nnoremap <F5> :windo bd <CR>
 nnoremap <F6> :tabnew ./ <CR>
+nnoremap <F7> :edit ./ <CR>
 nnoremap <Tab> :tabn <CR>
 nnoremap <S-Tab> :tabp <CR>
 
