@@ -65,9 +65,19 @@ set noshowmode    " Disable the bar that shows the mode
 set noruler       " Disable ruler
 set laststatus=2  " Always show Statusline
 
+" Create custom highlight for statusbar and tab highlight
+hi link ModeHighlight DiffText
 
-" Create new buffer local option for mode
-let g:insertmode = 0
+" Update ModeHighlight
+function! s:updateModeHighlight(mode)
+  if a:mode == "i"
+    hi! link ModeHighlight DiffChange
+  elseif a:mode == "r"
+    hi! link ModeHighlight DiffDelete
+  elseif a:mode == "n"
+    hi! link ModeHighlight DiffText
+  endif
+endfunction
 
 " Statusline function
 function! s:createStatusLine()
@@ -75,11 +85,7 @@ function! s:createStatusLine()
   set statusline=
 
   " Color Filename depending on Mode
-  if g:insertmode
-    set statusline+=\ %#DiffChange#
-  else
-    set statusline+=\ %#DiffText#
-  endif
+  set statusline+=\ %#ModeHighlight#
 
   " File Information
   set statusline+=%f                                          " relative path & filename
@@ -93,11 +99,7 @@ function! s:createStatusLine()
   set statusline+=%=                                          " Change to right Site
   
   " Line information
-  if g:insertmode
-    set statusline+=\ %#DiffChange#
-  else
-    set statusline+=\ %#DiffText#
-  endif
+  set statusline+=\ %#ModeHighlight#
   set statusline+=%3p%%
   set statusline+=\ %3l:%-3L                                     " current Line / total amount of Lines in Buffer
 endfunction
@@ -106,14 +108,20 @@ endfunction
 augroup statusline
   " Remove all autocommands in this group
   au! 
-  au InsertEnter * let g:insertmode = 1 | call s:createStatusLine()
-  au InsertLeave * let g:insertmode = 0 | call s:createStatusLine()
+  au InsertEnter * call s:updateModeHighlight(v:insertmode) | call s:createStatusLine()
+  au InsertLeave * call s:updateModeHighlight(mode()) | call s:createStatusLine()
   au WinEnter,BufWinEnter * call s:createStatusLine()
 augroup END
 
 call s:createStatusLine()
 
 " Custom Tabline Colors
+hi clear TabLineFill
 hi! link TabLineFill StatusLine
-hi! link TabLineSel DiffText
+
+hi clear TabLineSel
+hi! link TabLineSel StatusLine
+hi TabLineSel cTerm=reverse
+
+hi clear TabLine
 hi! link TabLine conceal
