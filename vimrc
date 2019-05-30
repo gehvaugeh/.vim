@@ -1,3 +1,6 @@
+" Add runtimepath for plugins
+set runtimepath ^=~/.vim/bundle/ctrlp.vim
+
 " Syntax Highlight and file recognition by endings
 filetype on
 syntax on
@@ -35,23 +38,25 @@ set number
 
 " Custom Hotkeys
 "  New Empty buffer in new Tab
-nnoremap <C-n> :tabedit <CR>
-"  Open File from current dir in new Tab
-nnoremap <C-o> :tabedit ./ <CR>
+nnoremap <C-n> :enew <CR>
+"  Toggle Netrw split on the left
+nnoremap <C-o> :Lexplore <CR>
 "  Delete Buffer in current window (and so close window)
 noremap <F4>w :bd <CR>
 "  Delete all Buffers in all windows in current tab (and close tab)
 nnoremap <F4>t :windo bd <CR>
 "  Tab / Shift Tab for tab navigation
-nnoremap <Tab> :tabn <CR>
-nnoremap <S-Tab> :tabp <CR>
+nnoremap <Tab> :bnext <CR>
+nnoremap <S-Tab> :bprev <CR>
 
 " Custom commands
 command Fw :w ! sudo tee > /dev/null % <CR>
 
 " Some configurations for the netrw file exlorer
+let g:netrw_browse_split=4
 let g:netrw_liststyle=3
 let g:netrw_banner=0
+let g:netrw_winsize=25
 
 " Change behavior of autocomplete
 " to just insert longest common text
