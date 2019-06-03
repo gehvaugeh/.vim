@@ -37,7 +37,7 @@ set incsearch
 set number
 
 " Custom Hotkeys
-"  New Empty buffer in new Tab
+"  New Empty buffer in current window
 nnoremap <C-n> :enew <CR>
 "  Toggle Netrw split on the left
 nnoremap <C-o> :Lexplore <CR>
@@ -46,8 +46,8 @@ noremap <F4>w :bd <CR>
 "  Delete all Buffers in all windows in current tab (and close tab)
 nnoremap <F4>t :windo bd <CR>
 "  Tab / Shift Tab for tab navigation
-nnoremap <Tab> :bnext <CR>
-nnoremap <S-Tab> :bprev <CR>
+nnoremap <Tab> :tabn<CR>
+nnoremap <S-Tab> :tabp<CR>
 
 " Custom commands
 command Fw :w ! sudo tee > /dev/null % <CR>
