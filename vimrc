@@ -1,5 +1,9 @@
 " Add runtimepath for plugins
 set runtimepath ^=~/.vim/bundle/ctrlp.vim
+set runtimepath ^=~/.vim/bundle/vim-auto-save
+
+" CtrlP configs
+let g:ctrlp_show_hidden = 1
 
 " Syntax Highlight and file recognition by endings
 filetype on
