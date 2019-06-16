@@ -17,14 +17,13 @@ set history=100
 
 " Indentations, 2 Spaces no Tab
 filetype indent on
-
-" No line wrapping
-set nowrap
-
-"set wrap
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set autoindent
+
+" No line wrapping
+set nowrap
 
 " Highlight searchresults and show matches
 set hlsearch
@@ -110,7 +109,7 @@ function! s:createStatusLine()
   " Line information
   set statusline+=\ %#ModeHighlight#
   set statusline+=%3p%%
-  set statusline+=\ %3l:%-3L                                     " current Line / total amount of Lines in Buffer
+  set statusline+=\ %3l:%-3L                                  " current Line / total amount of Lines in Buffer
 endfunction
 
 " Autocommand group for Modechange
